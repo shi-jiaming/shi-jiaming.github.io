@@ -12,6 +12,36 @@ interface Publication {
 
 const publications: Publication[] = [
 	{
+		title: "DeepSeek-V4.1-Flash: Pushing the Limits of KV Cache Compression",
+		authors: "DeepSeek AI",
+		time: "2026.09",
+		img_path: "/publications/FlashMLA.png",
+		description: {
+			en: "We introduce DeepSeek-V4.1-Flash, a multimodal Mixture-of-Experts (MoE) model.",
+			zh: "我们发布了 DeepSeek-V4.1-Flash 模型。"
+		},
+		submit_status: {
+			en: "On HuggingFace",
+			zh: "发表于 HuggingFace"
+		},
+		link: "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf"
+	},
+	{
+		title: "DeepSelect: TopK kernels for DeepSeek Sparse Attention (DSA) and Samplers",
+		authors: "Yi Qian, <b>Shengyu Liu</b>, Yichen Li",
+		time: "2026.09",
+		img_path: "/publications/FlashMLA.png",
+		description: {
+			en: "DeepSelect is a high performance implementation of the TopK kernel used in DeepSeek Sparse Attention (DSA) (which is used in DeepSeek V3.2, DeepSeek V4, and DeepSeek V4.1 models) and the sampler.",
+			zh: "DeepSelect 是一个为了 DeepSeek Sparse Attention 的 Indexer 和 Sampler 编写的高效 topk 实现。"
+		},
+		submit_status: {
+			en: "On GitHub",
+			zh: "发布于 GitHub"
+		},
+		link: "https://github.com/deepseek-ai/DeepSelect"
+	},
+	{
 		title: "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence",
 		authors: "DeepSeek AI",
 		time: "2026.04",
