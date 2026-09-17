@@ -2,16 +2,26 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]  # ⚠️ 如果你的分支名叫 master，请把 main 改成 master
+    branches: [ master ]   # 仅监听 master 分支
+  workflow_dispatch:       # 支持手动点击按钮运行
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: 检出代码
+      - name: 检出 master 分支代码
         uses: actions/checkout@v4
 
       - name: 安装 Node.js
@@ -24,8 +34,11 @@ jobs:
           npm install
           npm run build
 
-      - name: 部署到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: 上传构建产物
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: './dist'   # 打包出来的静态文件目录
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
